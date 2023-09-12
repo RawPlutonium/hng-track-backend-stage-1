@@ -9,11 +9,17 @@ app = Flask(__name__)
 
 @app.route("/api", methods=["GET"])
 def api():
-    slack_name = request.args.get("slack_name")
-    track = request.args.get("track")
+    slack_name = request.json.get("slack_name")
+    track = request.json.get("track")
 
     current_day = datetime.datetime.now().strftime("%A")
     utc_time = datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+    if not utc_time.endswith("Z"):
+        raise ValueError("The UTC time should be in the format YYYY-MM-DDTHH:mm:ssZ")
+
+    if request.headers["Content-Type"] != "application/json":
+        raise ValueError("The content type format is invalid")
 
     github_file_url = requests.get(
         "https://api.github.com/repos/rawplutonium/hng-track-backend-stage-1/commits/HEAD"
