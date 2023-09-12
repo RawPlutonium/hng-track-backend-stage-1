@@ -23,7 +23,7 @@ def api():
     except requests.exceptions.RequestException as e:
         return json.dumps({"error": "Failed to fetch GitHub data"}), 500
 
-    # Construct the response JSON
+    # Construct the response JSON as specified
     data = {
         "slack_name": slack_name,
         "current_day": datetime.datetime.now().strftime("%A"),
