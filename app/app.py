@@ -13,6 +13,7 @@ def api():
     track = request.args.get("track")
 
     current_day = datetime.datetime.now().strftime("%A")
+
     utc_time = datetime.datetime.utcnow().isoformat()
 
     if not utc_time.endswith("Z"):
