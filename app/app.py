@@ -6,7 +6,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-utc_time = datetime.datetime.utcnow().isoformat()
+utc_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 @app.route("/api", methods=["GET"])
