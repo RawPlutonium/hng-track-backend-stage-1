@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 @app.route("/api", methods=["GET"])
 def api():
-    slack_name = request.json.get("slack_name")
-    track = request.json.get("track")
+    slack_name = request.args.get("slack_name")
+    track = request.args.get("track")
 
     current_day = datetime.datetime.now().strftime("%A")
     utc_time = datetime.datetime.now(datetime.timezone.utc).isoformat()
