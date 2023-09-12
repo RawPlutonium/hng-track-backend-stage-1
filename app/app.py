@@ -1,6 +1,6 @@
 import datetime
 import json
-from flask import Flask, request
+from flask import Flask, request, jsonify  # Import jsonify for setting the content type
 import requests
 
 app = Flask(__name__)
@@ -34,7 +34,8 @@ def api():
         "status_code": 200,
     }
 
-    return json.dumps(data), 200
+    # Set the content type to "application/json"
+    return jsonify(data), 200
 
 if __name__ == "__main__":
     app.run(debug=False)
