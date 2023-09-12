@@ -13,7 +13,7 @@ def api():
     track = request.args.get("track")
 
     current_day = datetime.datetime.now().strftime("%A")
-    utc_time = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    utc_time = datetime.datetime.utcnow().isoformat()
 
     if not utc_time.endswith("Z"):
         raise ValueError("The UTC time should be in the format YYYY-MM-DDTHH:mm:ssZ")
